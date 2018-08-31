@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script>
+	angular.module("myApp", []).filter("reverse", function(){
+		return function(text){
+			return text.split("").reverse().join("");
+		}
+	})
+</script>	
+</head>
+<body>
+	<div ng-app="myApp" ng-init="lastName='John'; quantity=9; price=0.2; 
+	names=[{name:'Jani',country:'Norway'},
+		{name:'Hege',country:'Sweden'},
+		{name:'Kai',country:'Denmark'}]">
+		<p>名字是{{lastName | uppercase}}</p>
+		<p>总额是{{(quantity * price) | currency}}</p>
+		<p>人民币总额是{{(quantity * price) | currency: "￥"}}</p>
+		<p>日期格式化{{1490161945000 | date: "yyyy-MM-dd"}}
+		<p>按国家升序</p>
+		<ul>
+			<li ng-repeat="n in names | orderBy: 'country'">
+				{{n.name + " " + n.country}}
+			</li>
+		</ul>
+		<p>按国家降序</p>
+		<ul>
+			<li ng-repeat="n in names | orderBy: '-country'">
+				{{n.name + " " + n.country}}
+			</li>
+		</ul>
+		
+		输入过滤器<br>
+		请输入包含的字符串: <input type="text" ng-model="filtertext">
+		<ul>
+			<li ng-repeat="n in names | filter: filtertext | orderBy: 'country'">
+				{{n.name + " " + n.country}}
+			</li>
+		</ul>
+		
+		定义自己的过滤器:<br>
+		<input type="text" ng-model="yourname"><br>
+		翻转姓名: {{yourname | reverse}}
+	</div>
+</body>
+</html>

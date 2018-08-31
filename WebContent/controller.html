@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="myapp" ng-controller="myctrl"> 
+		ming: <input type="text" ng-model="firstName"><br>
+		xing: <input type="text" ng-model="lastName"><br>
+		姓名: {{firstName + " " + lastName}} <br>
+		全名: {{fullName()}} <br>
+	</div>
+</body>
+<script>
+	var module = angular.module('myapp', []);
+	module.controller('myctrl', function($scope){
+		$scope.firstName = "John22";
+		$scope.lastName = "Doe22";
+		$scope.fullName = function(){
+			return $scope.firstName + " " + $scope.lastName;
+		}
+	})
+</script>
+</html>

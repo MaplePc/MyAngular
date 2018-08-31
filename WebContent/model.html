@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<style>
+	input.ng-invalid{
+		background-color: lightblue;
+	}
+</style>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		名字: <input ng-model="name"><br>
+		使用的地方1: {{name}}<br>
+		使用的地方2: {{name}}<br>
+		
+		<form name="myForm">
+			Email:
+			<!-- 一定要ng-model="myText(名称)" -->
+			<input type="email" name="myAddress" ng-model="myText">
+			<!-- 一定要加上myForm否则会失效 -->
+			<span ng-show="myForm.myAddress.$error.email">邮箱地址非法</span>
+		</form>
+
+		<form name="myForm1">
+			<div>
+				<span ng-init="myText = 'test@runoob.com'"></span>
+			</div>
+			
+			Email: <input type="email" name="myAddress" ng-model="myText" required>
+			<h1>状态</h1>
+			valid? {{myForm1.myAddress.$valid}} <br> 
+			dirty? {{myForm.myAddress.$dirty}} <br>
+			touched? {{myForm1.myAddress.$touched}} <br>
+		</form>
+		
+		<!-- ng-model指令可以根据它们的状态来设置css类 -->
+		<form name="myForm3">
+			输入你的名字:
+			<input name="myAddress3" ng-model="text3" required>
+		</form>
+		
+	</div>
+</body>
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope){
+		$scope.name = "Maxi";
+	})
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<h1>carname={{carname}}</h1><br>
+		<input ng-model="name"><br>
+		<button ng-click='greet()'>点这里</button>
+		<h1>{{content}}</h1><br>
+	</div>
+</body>
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope){
+		$scope.carname = "BYD"
+		$scope.name = "cainiao"
+		$scope.greet = function(){
+			$scope.content = "hello " + $scope.name + "!!";
+		}
+	})
+</script>
+</html>

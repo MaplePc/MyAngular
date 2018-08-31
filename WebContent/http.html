@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="myApp" >
+	<div ng-controller="myCtrl">
+		<p>{{jsonshow}}</p>
+	</div>
+	<p>++++++++++++++++++++++++</p>
+	<div ng-controller="simpleCtrl">
+		<p>{{jsonshow}}</p>
+	</div>
+</body>
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope, $http){ //构造ctrl的时候一定需要传$scope等其他参数
+		$http({
+			method: "GET",
+			url: "index.html"
+		}).then(function(response){
+			$scope.jsonshow = response;
+		}, function(resp){
+			$scope.jsonshow = "错误, 无数据返回"
+		});
+	})
+	app.controller("simpleCtrl", function($scope, $http){
+		$http.get("index.html").then(function(resp){
+			$scope.jsonshow = resp;
+		});
+	})
+</script>
+</html>

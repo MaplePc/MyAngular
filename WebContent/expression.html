@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="">
+		<p>表达式计算: 5 + 5 = {{5 + 5}}</p><br>
+		<div ng-init="quantity=3; cost=5;">
+			<p>总价: {{quantity * cost}}</p>
+		</div>
+		<div ng-init="obj={name:'Betty', age:12}">
+			<p>对象属性: {{obj.name}}</p>
+		</div>
+		<div ng-init="array=[12, 13]">
+			<p>数组元素: {{array[1]}}</p>
+		</div>
+	</div>
+	
+</body>
+</html>
+<!-- 
+	AngularJS 表达式 与 JavaScript 表达式
+相同点:
+    都可以包含字母，操作符，变量。
+不同点:
+    AngularJS 表达式可以写在 HTML 中。
+    AngularJS 表达式不支持条件判断，循环及异常。
+    AngularJS 表达式支持过滤器。
+ -->

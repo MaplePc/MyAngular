@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<input type="text" ng-model="num">
+		<p>{{num}}转十六进制={{result}}</p>
+	</div>
+	双方的双方都是
+</body>
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope){
+		$scope.$watch("num", function(){
+			if(angular.isDefined($scope.num)){
+// 				var a = 255; //number类型
+// 				var b = "255"; //string类型
+// 				alert(typeof(a) + "," + typeof(b))
+// 				alert(typeof ($scope.num)) //string类型, 调用toString(16)返回自身, 所以首先要进行类型转换 
+				var data = (Number)($scope.num);
+				$scope.result = data.toString(16);
+			}
+		})
+	})
+</script> 
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<!-- 注意双引号里面还需要使用一对单引号 -->
+		<div ng-include="'toBeIncluded.html'">
+		</div>
+		
+<!-- 	<div ng-include="'http://www.runoob.com/angularjs/angularjs-include.html'"> -->
+<!-- 	</div> -->
+	</div>
+</body>
+
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope){
+		
+	})
+// 	app.config(function($sceDelegateProvider) {
+//     $sceDelegateProvider.resourceUrlWhitelist([
+//         'http://www.runoob.com/angularjs/**'
+//     ]);
+});
+	
+</script>
+</html>

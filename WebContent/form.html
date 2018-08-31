@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<form>
+			<input type="radio" ng-model="myswitch" value="Dog">Dog
+			<input type="radio" ng-model="myswitch" value="Cat">Cat
+			<input type="radio" ng-model="myswitch" value="Fish">Fish
+		</form>
+		<!-- 根据myswitch的值来选择唯一显示一个div -->
+		<div ng-switch="myswitch">
+			<div ng-switch-when="Dog">
+				This is a Dog
+			</div>
+			<div ng-switch-when="Cat">
+				This is a Cat
+			</div>
+			<div ng-switch-when="Fish">
+				This is a Fish
+			</div>
+		</div>
+		
+		<form>
+			<!-- 配置默认选项 -->
+			<select ng-init="myselect='Cats'" ng-model="myselect"> 
+				<option value="Dogs">d</option>
+				<option value="Cats">c</option>
+				<option value="Fish">f</option>
+			</select>
+		</form>
+	</div>
+</body>
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope){
+		
+	})
+</script>
+</html>

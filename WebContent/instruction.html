@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+	<div ng-init="names=[
+		{name:'Jani',country:'Norway'},
+		{name:'Hege',country:'Sweden'},
+		{name:'Kai',country:'Denmark'}]">
+		<p>循环对象：</p>
+		<ul>
+			<li ng-repeat="x in names">
+				name={{x.name}}, contry={{x.country}}
+			</li>
+		</ul>
+	</div>
+	
+	<!-- 自定义标签 -->
+	作为标签使用<diy-instru></diy-instru>
+	作为属性使用<div diy-instru></div>
+	作为class使用<div class="diy-instru"></div>
+	<script>
+		var module = angular.module("myapp", []);
+		module.directive("diyInstru", function(){
+			return {
+				restrict: "EAC", 
+				template: "<h1>我的自定义指令</h1>",
+			}
+		})
+	</script>
+	<!-- 
+		E 作为元素名使用
+		A 作为属性使用
+		C 作为类名使用
+	 -->
+</body>
+</html>

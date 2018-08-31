@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello</title>
+<script
+	src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="myCtrl">
+		url地址是: {{myurl}}
+	</div>
+	<div ng-controller="httpCtrl">
+		<textarea rows=10 cols=50>
+			{{pagedata}}
+		</textarea>
+	</div>
+	<div ng-controller="timeoutCtrl">
+		<h1 ng-model="textshow">{{textshow}}</h1>
+	</div>
+	<div ng-controller="intervalCtrl">
+		<p>北京时间: {{time}}</p>
+	</div>
+	<div ng-controller="tohexCtrl">
+		<input type="text" ng-model="num">
+		<p>{{num}}转十六进制={{result}}</p>
+	</div>
+	<div>
+		<h1>filter中使用自定义的service: 255 = {{255 | numFormat}}</h1>
+	</div>
+</body>
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope, $location){
+		$scope.myurl = $location.absUrl();
+	})
+	app.controller("httpCtrl", function($scope, $http){
+		$http.get("index.html").then(function(response){ //这里不需要传$scope参数
+			$scope.pagedata = response.data;
+		})
+	})
+	app.controller("timeoutCtrl", function($scope, $timeout){
+		$scope.textshow = "这里的内容1s后会改变"
+		$timeout(function(){ //这里不需要传$scope参数
+			$scope.textshow = "是的, 我来了"
+		}, 1000)
+	})
+	app.controller("intervalCtrl", function($scope, $interval){
+		$scope.time = new Date().toLocaleTimeString();
+		$interval(function(){ //这里不需要传$scope参数
+			$scope.time = new Date().toLocaleTimeString();
+		}, 1000)
+	})
+	
+	app.service("hexfy", function(){
+		this.func = function(x){
+			return x.toString(16);
+		}
+	})
+	app.controller("tohexCtrl", function($scope, hexfy){
+		$scope.$watch('num', function(){ //这里不需要传$scope参数
+			if(angular.isDefined($scope.num)){
+				$scope.result = hexfy.func((Number)($scope.num)); //必须先把String转成Number类型, 因为String没有相应的方法
+			}
+		})
+	})
+
+	app.filter('numFormat', function(hexfy) {
+		return function(data) {
+			return hexfy.func(data);
+		}
+	})
+</script>
+</html>
